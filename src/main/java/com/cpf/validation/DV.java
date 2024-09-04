@@ -3,6 +3,8 @@ package com.cpf.validation;
 public class DV {
 
     public static int firstDV(long cpf) {
+        cpf = cpf / 100;
+
         int n9 = (int) (cpf % 10) * 2;
         int n8 = (int) ((cpf / 10) % 10) * 3;
         int n7 = (int) ((cpf / 100) % 10) * 4;
@@ -14,8 +16,9 @@ public class DV {
         int n1 = (int) ((cpf / 100000000) % 10) * 10;
 
         int soma = n9 + n8 + n7 + n6 + n5 + n4 + n3 + n2 + n1;
+        soma = soma % 11;
 
-        int result = 11 - (soma % 11);
+        int result = 11 - soma;
 
         if (result > 9) {
             return 0;

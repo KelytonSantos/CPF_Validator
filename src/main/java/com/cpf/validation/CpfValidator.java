@@ -17,11 +17,11 @@ public class CpfValidator implements ConstraintValidator<ValidCPF, String> {
         long longCpf = convertionToLong(cpf);
         long cpfOriginal = longCpf;
 
-        longCpf = longCpf / 100;
         int dv1 = DV.firstDV(cpfOriginal);
-        longCpf = (longCpf * 10) + dv1;
 
-        int dv2 = DV.secondDV(cpfOriginal);
+        longCpf = ((longCpf / 100) * 10) + dv1;
+
+        int dv2 = DV.secondDV(longCpf);
         longCpf = (longCpf * 10) + dv2;
 
         return longCpf == cpfOriginal;
